@@ -32,8 +32,8 @@ dist:
 	cp src/retry_system.asm build/retry_system.asm
 
 	@echo "Creating archive"
-	cd build; tar cvzf ../build.tgz *
-
+	cd build; tar cvzf ../quickretry-$(VERSION).tgz *
+	cd build; zip -r ../quickretry-$(VERSION).zip *
 
 patch:
 	@echo "Patching SMW..."

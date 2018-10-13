@@ -1,5 +1,6 @@
 build/
-build.tgz
+*.tgz
+*.zip
 originals/
 *.smc
 *.sfc

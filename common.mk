@@ -1,3 +1,4 @@
+VERSION=1.1
 # Where is your ASAR binary? You need at least version 1.62
 ASAR_BIN=../../asar/asar/asar-standalone
 

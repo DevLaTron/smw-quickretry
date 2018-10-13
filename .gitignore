@@ -1,0 +1,7 @@
+build/
+build.tgz
+originals/
+*.smc
+*.sfc
+.swp
+old/

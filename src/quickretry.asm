@@ -99,7 +99,7 @@ ORG $05D8E0
 freecode
 ; Load configuration from extra file.
 Config:
-	incsrc config/retry_config.asm
+	incsrc config/quickretry_config.asm
 
 InjectPromptCode:
         ; Add inject to custom retry prompt code

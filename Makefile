@@ -24,19 +24,19 @@ dist:
 	@echo "Copying Configuration and includes"
 	mkdir -p build/config
 	mkdir -p build/includes
-	cp src/config/retry_config.asm build/config/retry_config.asm
+	cp src/config/quickretry_config.asm build/config/quickretry_config.asm
 	cp src/includes/hardware_registers.asm build/includes/hardware_registers.asm
 	cp src/includes/rammap.asm build/includes/rammap.asm
 
 	@echo "Copying sources"
-	cp src/retry_system.asm build/retry_system.asm
+	cp src/quickretry.asm build/quickretry.asm
 
 	@echo "Creating archive"
 	cd build; tar cvzf ../quickretry-$(VERSION).tgz *
 	cd build; zip -r ../quickretry-$(VERSION).zip *
 
 patch:
-	@echo "Patching SMW..."
+	@echo "Patching original SMW..."
 	cd src; $(ASAR_BIN) retry_system.asm $(ORIGINAL_ROM) ../original-patched.smc
 	@echo "Patching Reference SMC"
 	cd src; $(ASAR_BIN) retry_system.asm $(REFERENCE_ROM) ../reference-patched.smc

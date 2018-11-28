@@ -1,4 +1,4 @@
-Quick Retry System 1.2
+Quick Retry System 1.3
 ======================
  This patch adds a quick retry option to Super Mario World for the SNES. It has been written for simplicity and best
 effort has been made to provide a thorough documentation of the source. 

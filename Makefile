@@ -37,11 +37,11 @@ dist:
 
 patch:
 	@echo "Patching original SMW..."
-	cd src; $(ASAR_BIN) retry_system.asm $(ORIGINAL_ROM) ../original-patched.smc
+	cd src; $(ASAR_BIN) quickretry.asm $(ORIGINAL_ROM) ../original-patched.smc
 	@echo "Patching Reference SMC"
-	cd src; $(ASAR_BIN) retry_system.asm $(REFERENCE_ROM) ../reference-patched.smc
+	cd src; $(ASAR_BIN) quickretry.asm $(REFERENCE_ROM) ../reference-patched.smc
 	@echo "Patching Kaizo SMC"
-	cd src; $(ASAR_BIN) retry_system.asm $(KAIZO_ROM) ../kaizo-patched.smc
+	cd src; $(ASAR_BIN) quickretry.asm $(KAIZO_ROM) ../kaizo-patched.smc
 
 compare:
 	@echo "Comparing ROMs to originals"

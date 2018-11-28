@@ -1,7 +1,8 @@
 incsrc "includes/hardware_registers.asm"
 incsrc "includes/rammap.asm"
 
-!AddMusikFlag = $008075
+; Load configuration from extra file.
+        incsrc config/quickretry_config.asm
 
 ; List of variables used by this patch
 
@@ -35,8 +36,19 @@ else
         !7ED000 = $7ED000
 endif
 
-org $00A1DF
-autoclean JSL InjectPromptCode                                       ; Inject prompt handling
+if !play_music_onpause
+    org $00A23E
+    db $12
+endif
+
+; Ugly hack to prevent freespace leak. TODO: Fix this by making a good autoclean
+org $0085D2
+autoclean JSL Config
+
+if !prompt_code_patch
+  org $00A1DF
+  autoclean JSL InjectPromptCode                                       ; Inject prompt handling
+endif
 
 org $0085D2
 autoclean JML InjectRetryScreen                                      ; Inject split image loader for Retry screen
@@ -97,9 +109,6 @@ ORG $05D8E0
 +
 
 freecode
-; Load configuration from extra file.
-Config:
-	incsrc config/quickretry_config.asm
 
 InjectPromptCode:
         ; Add inject to custom retry prompt code
@@ -487,7 +496,9 @@ ResetLevel:
 	LDA !MusicBackup|!addr	                                     ; after the death jingle, this value will always be $FF
 	CMP !freeram+6
 	BEQ .musicend
-	STZ !MusicBackup|!addr
+	if !stop_music_onretry
+		STZ !MusicBackup|!addr
+	endif
 	BRA .musicend
 .amk
 	LDA !MusicBackup|!addr
@@ -566,10 +577,12 @@ InjectDeathSFX:
 	STA !death_sfx_bank|!addr
 	JML $00F614|!bank
 .useOriginal
-	LDA !MusicBackup|!addr
-	STA !freeram+10
-	LDA.l $00F60B|!bank	                                     ; death jingle
-	STA !SPCIO2|!addr
+	if !stop_music_onretry
+	    LDA !MusicBackup|!addr
+	    STA !freeram+10
+	    LDA.l $00F60B|!bank	                                     ; death jingle
+	    STA !SPCIO2|!addr
+	endif
 	JML $00F60F|!bank
 
 InjectStoreHurryFlag:

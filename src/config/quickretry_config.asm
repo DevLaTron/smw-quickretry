@@ -1,7 +1,9 @@
+freecode
+Config:
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ; global settings                       ;
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-
+!AddMusikFlag = $008075         ; Check here for AddmusiK
 !freeram = $7FB400              ; 11 bytes required
 
 !decrease_lives = $00           ; $00 = Unlimited lives          $01 = Standard SMW behavior.
@@ -10,6 +12,8 @@
 !clear_dragoncoins = $01        ; $00 = Dragon coinsnot reset    $01 = Clear dragon coins
 !clear_parked_yoshi = $01       ; $00 = Parked Yoshi preserved   $01 = Clear parked Yoshi (Counterbreak feature)  Prevents bringing Yoshi to Overworld
 !clear_rng = $00                ; $00 = Don't reset RNG          $01 = Reset RNG on level reset (using SEED variables below)
+
+!prompt_code_patch = $01        ; Patch prompt code. When $00, prompt cannot be shown (Use $02 or $03 for prompt type ONLY), but is compatible with Message box maniuplation patches
 
 !prompt_type = $00              ; $00 = Death jingle and Popup for Retry
                                 ; $01 = Only play SFX when player dies, show Popup for Retry
@@ -21,6 +25,9 @@
 !death_sfx_bank = $1DF9         ; Define bank to play SFX from: $1DF9 or $1DFC
 !death_jingle_alt = $FF         ; Define alternate SFX when player doesn't Retry $01-$FE: custom song number, $FF = do not use this feature
 !addmusick_ram_addr = $7FB000   ; Definition for Addmusic Patch. you don't need to change this in most cases
+
+!play_music_onpause = $00      ; Set to $01 to keep music playing when pause is pressed
+!stop_music_onretry = $01      ; Pause music when retry screen is shown, $01 = yes, $00 = no (Disables death_sfx)
 
 !layer3_disable = $01           ; Disable Layer 3 display upon death? $00 = no, $01 = yes
 

@@ -55,7 +55,15 @@ https://github.com/DevLaTron/smw-quickretry.git
 Changelog
 =========
 
-Version 1.2 2018-10-XX
+Version 1.3 2018-11-28
+----------------------
+- Added option to continue playing music when game is paused.
+- Added option to continue playing music when retry prompt is active. Disables death SFX when retrying.
+- Added option to disable prompt injection. This allows Message Box manipulation boxes to be compatible. Requires setting prompt type to $02 or $03 (disable).
+- Moved config loading and Autoclean to front of file.
+- Minor bug fixes and code rearrangement.
+
+Version 1.2 2018-10-14
 ----------------------
 - Renamed ASM files to better reflect package structure and naming.
 - Update README.md to better reflect some details.
